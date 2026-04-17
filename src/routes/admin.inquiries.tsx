@@ -27,7 +27,7 @@ function AdminInquiries() {
   useEffect(() => { reload(); }, []);
 
   const setStatus = async (id: string, status: string) => {
-    const { error } = await supabase.from("inquiries").update({ status }).eq("id", id);
+    const { error } = await supabase.from("inquiries").update({ status: status as "new" | "in_progress" | "closed" }).eq("id", id);
     if (error) toast.error(error.message);
     else { toast.success("Status updated"); reload(); }
   };
