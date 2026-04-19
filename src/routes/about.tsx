@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Award, Briefcase, GraduationCap, Globe, Phone, Mail } from "lucide-react";
 import { Section } from "@/components/site/Section";
+import oladelePhoto from "@/assets/oladele.jpeg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -88,9 +89,11 @@ function AboutPage() {
             className="lg:col-span-2"
           >
             <div className="aspect-[3/4] overflow-hidden rounded-sm bg-gradient-card shadow-luxury">
-              <div className="grid h-full w-full place-items-center bg-gradient-to-br from-charcoal via-card to-charcoal">
-                <span className="font-display text-7xl text-gold">OA</span>
-              </div>
+              <img
+                src={oladelePhoto}
+                alt="Oladele Atanda, Director of Operations at Sine Autos"
+                className="h-full w-full object-cover grayscale-[20%]"
+              />
             </div>
             <div className="mt-4 text-center">
               <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Director of Operations · NY</div>
