@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin } from "lucide-react";
+import logoUrl from "@/assets/logo.jpeg";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -8,9 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-1">
           <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-sm bg-gradient-gold">
-              <span className="font-display text-xl font-bold text-charcoal">S</span>
-            </div>
+            <img src={logoUrl} alt="Sine Autos logo" className="h-11 w-11 rounded-sm object-cover" />
             <div>
               <div className="font-display text-xl font-semibold text-foreground">SINE AUTOS</div>
               <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Drive Excellence</div>
