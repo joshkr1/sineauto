@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Globe2, ShieldCheck, Sparkles, Gauge } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Section } from "@/components/site/Section";
+import { Partners } from "@/components/site/Partners";
 import heroImg from "@/assets/hero-luxury-car.jpg";
 import classicImg from "@/assets/showcase-classic.jpg";
 import shippingImg from "@/assets/showcase-shipping.jpg";
@@ -224,6 +225,9 @@ function HomePage() {
           </div>
         </Section>
       )}
+
+      {/* PARTNERS */}
+      <Partners />
 
       {/* CTA STRIP */}
       <section className="border-y border-border bg-gradient-card">
