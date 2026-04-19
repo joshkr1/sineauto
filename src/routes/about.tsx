@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Award, Briefcase, GraduationCap, Globe, Phone, Mail } from "lucide-react";
 import { Section } from "@/components/site/Section";
+import oladelePhoto from "@/assets/oladele.jpeg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
