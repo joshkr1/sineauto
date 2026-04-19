@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, User as UserIcon, LogOut, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import logoUrl from "@/assets/logo.jpeg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,9 +45,11 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="group flex items-center gap-3">
-          <div className="grid h-9 w-9 place-items-center rounded-sm bg-gradient-gold transition-transform group-hover:scale-105">
-            <span className="font-display text-lg font-bold text-charcoal">S</span>
-          </div>
+          <img
+            src={logoUrl}
+            alt="Sine Autos logo"
+            className="h-10 w-10 rounded-sm object-cover transition-transform group-hover:scale-105"
+          />
           <div className="leading-tight">
             <div className="font-display text-lg font-semibold tracking-wide text-foreground">SINE AUTOS</div>
             <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Drive Excellence</div>
