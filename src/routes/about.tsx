@@ -78,6 +78,52 @@ function AboutPage() {
         </div>
       </Section>
 
+      <Section eyebrow="Board of Trustees" title="Director of Operations">
+        <div className="grid gap-10 lg:grid-cols-5 lg:items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2"
+          >
+            <div className="aspect-[3/4] overflow-hidden rounded-sm bg-gradient-card shadow-luxury">
+              <div className="grid h-full w-full place-items-center bg-gradient-to-br from-charcoal via-card to-charcoal">
+                <span className="font-display text-7xl text-gold">OA</span>
+              </div>
+            </div>
+            <div className="mt-4 text-center">
+              <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Director of Operations · NY</div>
+              <div className="mt-1 font-display text-2xl text-foreground">Oladele Atanda</div>
+              <div className="mt-3 flex items-center justify-center gap-4 text-xs text-muted-foreground">
+                <a href="tel:+18629104389" className="inline-flex items-center gap-1.5 hover:text-gold"><Phone className="h-3 w-3" /> +1 (862) 910‑4389</a>
+                <a href="https://wa.me/18629104389" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-gold">WhatsApp</a>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-3"
+          >
+            <h3 className="font-display text-3xl text-foreground text-balance">Operations, oversight, and continuous improvement.</h3>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Oladele Atanda is an accomplished leader in agile management with over a decade of experience driving strategy, execution, and operational excellence across both non-profit and private-sector organizations. His professional background spans e-commerce, automotive, and multi-location service industries, where he has supported scalable growth, customer-focused operations, and effective governance.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              He holds dual Master's degrees in Public Administration from <span className="text-foreground">Michigan State University</span> and <span className="text-foreground">Babeș-Bolyai University</span>, with academic concentrations in public policy, organizational leadership, and service delivery. He earned his Bachelor of Science in Sociology from <span className="text-foreground">Bayero University, Kano</span>.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              As a Director on the Board of Trustees at Sine Autos, Oladele brings a disciplined, outcomes-driven perspective to strategic oversight and decision-making — guiding the organization toward sustainable growth while maintaining high standards of accountability and customer trust.
+            </p>
+          </motion.div>
+        </div>
+      </Section>
+
+
       <Section eyebrow="Experience" title="Two Decades. One Standard." className="bg-gradient-card border-y border-border">
         <div className="grid gap-6 md:grid-cols-3">
           {[
