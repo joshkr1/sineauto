@@ -20,6 +20,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as InventoryIdRouteImport } from './routes/inventory.$id'
 import { Route as AdminVehiclesRouteImport } from './routes/admin.vehicles'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminInquiriesRouteImport } from './routes/admin.inquiries'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -77,6 +78,11 @@ const AdminVehiclesRoute = AdminVehiclesRouteImport.update({
   path: '/vehicles',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminInquiriesRoute = AdminInquiriesRouteImport.update({
   id: '/inquiries',
   path: '/inquiries',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/inventory': typeof InventoryRouteWithChildren
   '/services': typeof ServicesRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/admin/vehicles': typeof AdminVehiclesRoute
   '/inventory/$id': typeof InventoryIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/inventory': typeof InventoryRouteWithChildren
   '/services': typeof ServicesRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/admin/vehicles': typeof AdminVehiclesRoute
   '/inventory/$id': typeof InventoryIdRoute
   '/admin': typeof AdminIndexRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/inventory': typeof InventoryRouteWithChildren
   '/services': typeof ServicesRoute
   '/admin/inquiries': typeof AdminInquiriesRoute
+  '/admin/users': typeof AdminUsersRoute
   '/admin/vehicles': typeof AdminVehiclesRoute
   '/inventory/$id': typeof InventoryIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/inventory'
     | '/services'
     | '/admin/inquiries'
+    | '/admin/users'
     | '/admin/vehicles'
     | '/inventory/$id'
     | '/admin/'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/inventory'
     | '/services'
     | '/admin/inquiries'
+    | '/admin/users'
     | '/admin/vehicles'
     | '/inventory/$id'
     | '/admin'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/inventory'
     | '/services'
     | '/admin/inquiries'
+    | '/admin/users'
     | '/admin/vehicles'
     | '/inventory/$id'
     | '/admin/'
@@ -259,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminVehiclesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/inquiries': {
       id: '/admin/inquiries'
       path: '/inquiries'
@@ -271,12 +290,14 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminInquiriesRoute: typeof AdminInquiriesRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   AdminVehiclesRoute: typeof AdminVehiclesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminInquiriesRoute: AdminInquiriesRoute,
+  AdminUsersRoute: AdminUsersRoute,
   AdminVehiclesRoute: AdminVehiclesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
