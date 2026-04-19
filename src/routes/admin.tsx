@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { LayoutDashboard, Car, Inbox, LogOut } from "lucide-react";
+import { LayoutDashboard, Car, Inbox, Users, LogOut } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 
 export const Route = createFileRoute("/admin")({
@@ -43,6 +43,7 @@ VALUES ('${user.id}', 'admin');`}</pre>
           <NavItem to="/admin" icon={LayoutDashboard} label="Overview" exact />
           <NavItem to="/admin/vehicles" icon={Car} label="Vehicles" />
           <NavItem to="/admin/inquiries" icon={Inbox} label="Inquiries" />
+          <NavItem to="/admin/users" icon={Users} label="Users" />
           <button onClick={() => signOut()} className="mt-4 flex w-full items-center gap-3 rounded-sm px-3 py-2 text-sm text-muted-foreground hover:bg-card hover:text-foreground">
             <LogOut className="h-4 w-4" /> Sign out
           </button>
