@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -86,14 +86,29 @@ function ContactPage() {
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-gradient-gold text-charcoal"><Phone className="h-5 w-5" /></div>
               <div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-gold">Phone</div>
-                <a href="tel:+12125550199" className="text-foreground hover:text-gold">+1 (212) 555‑0199</a>
+                <a href="tel:+18629104389" className="text-foreground hover:text-gold">+1 (862) 910‑4389</a>
+                <div className="text-xs text-muted-foreground">Oladele Atanda — Director of Operations</div>
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-gradient-gold text-charcoal"><MessageCircle className="h-5 w-5" /></div>
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-gold">WhatsApp</div>
+                <a href="https://wa.me/18629104389" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-gold">Chat on WhatsApp</a>
               </div>
             </li>
             <li className="flex gap-4">
               <div className="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-gradient-gold text-charcoal"><MapPin className="h-5 w-5" /></div>
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-gold">Headquarters</div>
-                <div className="text-foreground">Manhattan, New York</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-gold">Office</div>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=95+Freeway+Drive+West+Orange+NJ+07050"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground hover:text-gold"
+                >
+                  95 Freeway Drive West<br />Orange, New Jersey 07050
+                </a>
               </div>
             </li>
           </ul>
