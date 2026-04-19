@@ -98,10 +98,6 @@ function AboutPage() {
             <div className="mt-4 text-center">
               <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Director of Operations · NY</div>
               <div className="mt-1 font-display text-2xl text-foreground">Oladele Atanda</div>
-              <div className="mt-3 flex items-center justify-center gap-4 text-xs text-muted-foreground">
-                <a href="tel:+18629104389" className="inline-flex items-center gap-1.5 hover:text-gold"><Phone className="h-3 w-3" /> +1 (862) 910‑4389</a>
-                <a href="https://wa.me/18629104389" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-gold">WhatsApp</a>
-              </div>
             </div>
           </motion.div>
 
