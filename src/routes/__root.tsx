@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/lib/auth-context";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 
 import appCss from "../styles.css?url";
 
@@ -84,6 +85,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
+      <WhatsAppFab />
       <Toaster
         position="top-center"
         toastOptions={{
