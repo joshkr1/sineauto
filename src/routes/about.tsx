@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Award, Briefcase, GraduationCap, Globe } from "lucide-react";
+import { Award, Briefcase, GraduationCap, Globe, Phone, Mail } from "lucide-react";
 import { Section } from "@/components/site/Section";
 
 export const Route = createFileRoute("/about")({
