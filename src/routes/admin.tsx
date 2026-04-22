@@ -26,10 +26,8 @@ function AdminLayout() {
       <div className="mx-auto max-w-2xl px-4 pt-32 pb-20 text-center">
         <h1 className="font-display text-4xl text-foreground">Admin access required</h1>
         <p className="mt-4 text-muted-foreground">
-          Your account ({user.email}) does not have admin privileges. To grant admin access, run this in the Cloud database (Cloud → Database → SQL):
+          Your account does not have admin privileges. Please contact the site administrator if you believe this is a mistake.
         </p>
-        <pre className="mt-6 overflow-x-auto rounded-sm bg-card p-4 text-left text-xs text-foreground">{`INSERT INTO public.user_roles (user_id, role)
-VALUES ('${user.id}', 'admin');`}</pre>
         <Link to="/" className="mt-6 inline-block text-gold hover:underline">← Back to site</Link>
       </div>
     );
