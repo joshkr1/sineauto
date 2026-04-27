@@ -18,6 +18,7 @@ export const lovable = {
           ...opts?.extraParams,
         },
       });
+      
 
       if (result.redirected) {
         return result;
