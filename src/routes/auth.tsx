@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
+
 import { useAuth } from "@/lib/auth-context";
 
 export const Route = createFileRoute("/auth")({
@@ -29,7 +29,7 @@ function AuthPage() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) navigate({ to: "/" });
+    if (!loading && user) navigate({ to: "/admin" });
   }, [user, loading, navigate]);
 
   const submit = async (e: React.FormEvent) => {
@@ -61,8 +61,13 @@ function AuthPage() {
   };
 
   const signInGoogle = async () => {
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
-    if (result.error) toast.error(result.error.message);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/admin`,
+      },
+    });
+    if (error) toast.error(error.message);
   };
 
   return (
