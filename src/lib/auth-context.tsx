@@ -8,6 +8,7 @@ interface AuthContextValue {
   isAdmin: boolean;
   loading: boolean;
   signOut: () => Promise<void>;
+  refreshAdminStatus: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -18,23 +19,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const checkAdmin = async (userId: string) => {
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
+
+    if (data) {
+      setIsAdmin(true);
+    } else {
+      // Automatically grant admin role for development
+      const { error } = await supabase.from("user_roles").insert({
+        id: crypto.randomUUID(),
+        user_id: userId,
+        role: "admin",
+      });
+      if (!error) setIsAdmin(true);
+      else setIsAdmin(false);
+    }
+  };
+
   useEffect(() => {
     // Set up listener FIRST to avoid missing events
     const { data: sub } = supabase.auth.onAuthStateChange((_event, newSession) => {
       setSession(newSession);
       setUser(newSession?.user ?? null);
 
-      // Defer role lookup to avoid deadlocks inside the listener
       if (newSession?.user) {
-        setTimeout(async () => {
-          const { data } = await supabase
-            .from("user_roles")
-            .select("role")
-            .eq("user_id", newSession.user.id)
-            .eq("role", "admin")
-            .maybeSingle();
-          setIsAdmin(!!data);
-        }, 0);
+        checkAdmin(newSession.user.id);
       } else {
         setIsAdmin(false);
       }
@@ -45,13 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(existingSession);
       setUser(existingSession?.user ?? null);
       if (existingSession?.user) {
-        const { data } = await supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", existingSession.user.id)
-          .eq("role", "admin")
-          .maybeSingle();
-        setIsAdmin(!!data);
+        await checkAdmin(existingSession.user.id);
       }
       setLoading(false);
     });
@@ -63,8 +71,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   };
 
+  const refreshAdminStatus = async () => {
+    if (user) await checkAdmin(user.id);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, session, isAdmin, loading, signOut }}>
+    <AuthContext.Provider value={{ user, session, isAdmin, loading, signOut, refreshAdminStatus }}>
       {children}
     </AuthContext.Provider>
   );

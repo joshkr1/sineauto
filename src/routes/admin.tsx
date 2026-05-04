@@ -13,24 +13,12 @@ export const Route = createFileRoute("/admin")({
 });
 
 function AdminLayout() {
-  const { user, isAdmin, loading, signOut } = useAuth();
+  const { user, isAdmin, loading, signOut, refreshAdminStatus } = useAuth();
   const navigate = useNavigate();
 
-  const hasAttemptedGrant = useRef(false);
-
-  // Automatically attempt to grant admin role during development if not already an admin
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/auth" });
-    if (!loading && user && !isAdmin && !hasAttemptedGrant.current) {
-      hasAttemptedGrant.current = true;
-      console.log("Automatically granting admin role...");
-      supabase.from("user_roles").insert({
-        id: crypto.randomUUID(),
-        user_id: user.id,
-        role: "admin",
-      });
-    }
-  }, [user, isAdmin, loading]);
+  }, [user, loading, navigate]);
 
   if (loading) return <div className="pt-32 text-center text-muted-foreground">Loading…</div>;
   if (!user) return null;
