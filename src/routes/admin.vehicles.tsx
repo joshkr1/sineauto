@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Plus, Trash2, Pencil, X, Upload, Loader2, ImageIcon, Star } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/lib/auth-context";
 
 export const Route = createFileRoute("/admin/vehicles")({
   component: AdminVehicles,
@@ -190,6 +191,7 @@ function PhotoManager({
   images: string[];
   onChange: (thumbnail: string | null, images: string[]) => void;
 }) {
+  const { user } = useAuth();
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
@@ -208,8 +210,8 @@ function PhotoManager({
         continue;
       }
       const ext = file.name.split(".").pop() || "jpg";
-      const path = `${crypto.randomUUID()}.${ext}`;
-      const { error } = await supabase.storage.from("vehicle-images").upload(path, file, {
+      const path = `${user?.id}/${crypto.randomUUID()}.${ext}`;
+      const { error } = await supabase.storage.from("inventory_images").upload(path, file, {
         cacheControl: "3600",
         upsert: false,
         contentType: file.type,
@@ -218,7 +220,7 @@ function PhotoManager({
         toast.error(`Upload failed: ${error.message}`);
         continue;
       }
-      const { data: { publicUrl } } = supabase.storage.from("vehicle-images").getPublicUrl(path);
+      const { data: { publicUrl } } = supabase.storage.from("inventory_images").getPublicUrl(path);
       uploaded.push(publicUrl);
     }
     if (uploaded.length) {
